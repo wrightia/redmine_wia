@@ -2,14 +2,22 @@ require 'redmine'
 require_dependency 'projects_helper'
 require_dependency 'application_helper'
 
+# models
+require_dependency 'models/user_patch'
+require_dependency 'models/time_entry_patch'
+
+# controllers
+require_dependency 'controllers/timelog_controller_patch'
+require_dependency 'controllers/projects_controller_patch'
+
 Redmine::Plugin.register :redmine_wia do
   name 'Redmine Wia plugin'
   author 'Nuno Carvalho'
   description 'This is a plugin for Redmine to customize.'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://lean.wrightia.com/path/to/plugin'
   author_url 'http://example.com/about'
-  
+
   Redmine::WikiFormatting::Macros.macro :my_news, :desc => 'Create a list of news from the user projects. Example:\n\n {{my_news()}}.' do |obj, args|
       news_items = News.visible.
         where(:project_id => User.current.projects.map(&:id)).
@@ -22,13 +30,13 @@ Redmine::Plugin.register :redmine_wia do
   end
 
   module RedmineContactsNoteTypes
-    class HelpersNotesHook < Redmine::Hook::ViewListener     
+    class HelpersNotesHook < Redmine::Hook::ViewListener
       def helper_notes_note_type_label(context={})
         context[:note_types] << ["Proposal", 4]
-      end  
+      end
       def helper_notes_note_type_tag(context={})
         context[:type_tag] << content_tag('span', '', :class => "icon icon-attachment", :title => "Proposal") if context[:type_id] == 4
-      end  
+      end
     end
   end
 end
