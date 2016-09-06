@@ -1,8 +1,8 @@
 module TimelogControllerPatch
   def self.included(base)
-    base.extend(ClassMethods)
-
-    base.send(:include, InstanceMethods)
+    # base.extend(ClassMethods)
+    #
+    # base.send(:include, InstanceMethods)
 
     base.class_eval do
       def create_with_plugin
@@ -25,11 +25,11 @@ module TimelogControllerPatch
     end
   end
 
-  module ClassMethods
-  end
-
-  module InstanceMethods
-  end
+  # module ClassMethods
+  # end
+  #
+  # module InstanceMethods
+  # end
 end
 
 TimelogController.send(:include, TimelogControllerPatch)

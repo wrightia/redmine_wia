@@ -4,7 +4,7 @@ module UserPatch
   def self.included(base)
     base.extend(ClassMethods)
 
-    base.send(:include, InstanceMethods)
+    # base.send(:include, InstanceMethods)
 
     base.class_eval do
       # include belongs_to
@@ -21,8 +21,8 @@ module UserPatch
     end
   end
 
-  module InstanceMethods
-  end
+  # module InstanceMethods
+  # end
 end
 
 # Add module to User
