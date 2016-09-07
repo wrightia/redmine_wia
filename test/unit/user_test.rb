@@ -12,6 +12,6 @@ class UserTest < ActiveSupport::TestCase
             :tokens
 
   def test_users_in_project
-    assert_kind_of Array User.in_project(1).map(&:id)
+    assert_kind_of Array, User.in_project(1).map(&:id)
   end
 end
