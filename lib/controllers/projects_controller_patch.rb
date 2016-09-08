@@ -9,7 +9,7 @@ module ProjectsControllerPatch
       before_filter :authorize, except: [:index, :list, :new, :create, :copy, :archive, :unarchive, :destroy, :members]
 
       def members
-        @records = User.in_project(params[:time_entry][:project_id]).collect { |u| [u.name, u.id] }
+        @records = User.in_project(params[:id]).collect { |u| [u.name, u.id] }
         render json: @records
       end
     end

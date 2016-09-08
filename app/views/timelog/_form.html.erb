@@ -47,7 +47,7 @@
         url: '<%= escape_javascript projects_members_path(:format => 'js') %>',
         type: 'post',
         dataType: "json",
-        data: $('#new_time_entry').serialize(),
+        data: { id: $('#time_entry_project_id').val() },
         success: function(result) {
           // instanciate drop
           $ddlusers = $('#time_entry_user_id');
