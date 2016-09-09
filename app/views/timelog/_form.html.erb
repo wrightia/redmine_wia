@@ -13,7 +13,9 @@
   <% end %>
 
   <% if params[:project_id].nil? || @time_entry.editable_by?(User.current) %>
-  <p><%= f.select :user_id, User.in_project(f.object.project_id).collect { |u| [u.name, u.id] } %></p>
+  <p><%= f.select :user_id,
+    content_tag('option', '', :value => '') +
+    principals_options_for_select(User.in_project(f.object.project_id), @time_entry.user_id) %></p>
   <% end %>
 
   <p>

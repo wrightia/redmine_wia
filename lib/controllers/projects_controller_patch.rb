@@ -10,6 +10,8 @@ module ProjectsControllerPatch
 
       def members
         @records = User.in_project(params[:id]).collect { |u| [u.name, u.id] }
+        @records.unshift(['<< me >>', session[:user_id]]) if @records.find { |_k, v| v == session[:user_id] }
+        @records.unshift(['', ''])
         render json: @records
       end
     end
